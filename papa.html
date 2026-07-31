@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smayol Couture | Bespoke Fashion & Tailoring</title>
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & RESET (Apple / Tech Aesthetics)
+       ========================================================================== */
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: rgba(22, 22, 26, 0.8);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-gold: #d4af37;
+      --accent-gold-hover: #f3cf55;
+      --text-main: #f5f5f7;
+      --text-muted: #86868b;
+      --success: #34c759;
+      --danger: #ff3b30;
+      --glass: rgba(255, 255, 255, 0.05);
+      --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(10, 10, 12, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo-svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .admin-btn {
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .admin-btn:hover {
+      background: var(--accent-gold);
+      color: #000;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 60px;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: #000;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    }
+
+    /* ==========================================================================
+       4. SERVICES & GALLERY SECTION
+       ========================================================================== */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 40px 0 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: border 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* GALLERY STYLES */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+
+    .gallery-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-gold);
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 250px;
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .gallery-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .gallery-info h4 {
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .gallery-info p {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+    }
+
+    /* ==========================================================================
+       5. BOOKING FORM
+       ========================================================================== */
+    .booking-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 80px;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--glass);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-gold);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .measurements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 15px;
+    }
+
+    /* ==========================================================================
+       6. OWNER & CUSTOM ORDER SECTIONS
+       ========================================================================== */
+    .owner-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .owner-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .owner-details h3 {
+      font-size: 1.4rem;
+      color: var(--accent-gold);
+      margin-bottom: 5px;
+    }
+
+    .owner-details p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .custom-help-banner {
+      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(22,22,26,0.9) 100%);
+      border: 1px solid var(--accent-gold);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .custom-help-banner h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .custom-help-banner p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       7. MODAL & DASHBOARD
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #121216;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .bank-box {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--accent-gold);
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .bank-box p {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .order-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .badge-pending { background: rgba(255, 149, 0, 0.2); color: #ff9500; }
+    .badge-approved { background: rgba(52, 199, 89, 0.2); color: #34c759; }
+
+    .error-msg {
+      color: var(--danger);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       8. WHATSAPP FLOATING BUTTON
+       ========================================================================== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-btn svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .owner-section { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo-container">
+      <svg class="logo-svg" viewBox="0 0 100 100">
+        <path d="M20 30 L50 10 L80 30 L50 90 Z" fill="none" stroke="#d4af37" stroke-width="4"/>
+        <path d="M35 30 L50 20 L65 30 L50 70 Z" fill="#d4af37" opacity="0.3"/>
+        <circle cx="50" cy="50" r="6" fill="#d4af37"/>
+      </svg>
+      <span class="brand-title">Smayol Couture</span>
+    </a>
+    <nav>
+      <button class="admin-btn" onclick="openAdminModal()">Admin Access</button>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Precision Bespoke Tailoring</h1>
+    <p>Handcrafted luxury garments, perfectly fitted to your unique dimensions.</p>
+    <a href="#order-section" class="btn-primary">Order Custom Outfit</a>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <div class="container">
+    <h2 class="section-title">Our Craftsmanship</h2>
+    <p class="section-subtitle">Delivering high-end bespoke garments across Anguwan Kabula, IBB Market, Suleja, Niger State & Beyond.</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Men's Tailoring</h3>
+        <p>Native suits, Kaftans, and formal suits crafted with exact precision.</p>
+      </div>
+      <div class="service-card">
+        <h3>Women's Couture</h3>
+        <p>Bespoke dresses, Skirt & Blouse combinations, and luxury gowns.</p>
+      </div>
+      <div class="service-card">
+        <h3>Asiwaju Caps</h3>
+        <p>Traditional hand-crafted caps shaped to perfection.</p>
+      </div>
+      <div class="service-card">
+        <h3>Weaving & Design</h3>
+        <p>Unique patterns, monogramming, and fabric embellishments.</p>
+      </div>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <h2 class="section-title">Our Recent Works</h2>
+    <p class="section-subtitle">Explore a selection of our handcrafted garments</p>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/4610C34A-AD1F-489B-ABFE-2C33C003A73D.jpeg" alt="Men's Native Wear">
+        </div>
+        <div class="gallery-info">
+          <h4>Bespoke Men's Kaftan</h4>
+          <p>Men's Native Collection</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/5EA7BA2B-D544-4D41-9B6E-6878534CC65F.jpeg" alt="Women's Gown">
+        </div>
+        <div class="gallery-info">
+          <h4>Elegant Luxury Dress</h4>
+          <p>Women's Couture</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/DA5BF6B4-E274-4812-92F4-CF2B81690511.jpeg" alt="Custom Suit">
+        </div>
+        <div class="gallery-info">
+          <h4>Handmade Asiwaju Cap Set</h4>
+          <p>Traditional & Modern Fusion</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/180441A3-B7E7-4449-B85B-40129710AE8F.jpeg" alt="Skirt & Blouse">
+        </div>
+        <div class="gallery-info">
+          <h4>Skirt & Blouse Combination</h4>
+          <p>Women's Design</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING FORM -->
+    <div class="booking-card" id="order-section">
+      <h2 style="margin-bottom: 20px; text-align: center;">Place Your Custom Order</h2>
+      <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+        
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="custName" class="form-control" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="custPhone" class="form-control" required placeholder="+234...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <input type="text" id="custAddress" class="form-control" required placeholder="Street address, City">
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Select Category</label>
+            <select id="genderSelect" class="form-control" onchange="renderMeasurementFields()" required>
+              <option value="">Select Gender</option>
+              <option value="men">Men's Sewing</option>
+              <option value="women">Women's Sewing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Style Choice</label>
+            <select id="styleSelect" class="form-control" onchange="toggleWomenOptions()" required>
+              <option value="Native Suit">Native Suit / Kaftan</option>
+              <option value="Asiwaju Cap Setup">Asiwaju Cap Combination</option>
+              <option value="Dress">Full Dress</option>
+              <option value="Skirt and Blouse">Skirt and Blouse</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- FABRIC & COLOR SELECTION -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Fabric Type / Material</label>
+            <select id="fabricSelect" class="form-control" required>
+              <option value="">Select Fabric Type</option>
+              <option value="Cotton / Wool Kaftan Fabric">Cotton / Wool Kaftan Fabric</option>
+              <option value="Atiku / Brocade">Atiku / Brocade</option>
+              <option value="Lace Material">Lace Material</option>
+<option value="jonkoso">jonkoso</option>
+              <option value="Cashmere / Suit Material">Cashmere / Suit Material</option>
+              <option value="Ankara / Print Fabric">Ankara / Print Fabric</option>
+              <option value="Customer Supplying Own Material">I will provide my own material</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Garment Color</label>
+            <div style="display:flex; gap:10px;">
+              <input type="color" id="colorPicker" value="#d4af37" class="form-control" style="width:50px; padding:2px; cursor:pointer;" onchange="document.getElementById('colorText').value = this.value">
+              <input type="text" id="colorText" class="form-control" placeholder="e.g. Royal Blue, Gold, Black" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- DYNAMIC MEASUREMENTS INPUTS -->
+        <div class="form-group">
+          <label style="color: var(--accent-gold); font-weight: 700;">Enter Measurements (Inches)</label>
+          <div id="measurementsContainer" class="measurements-grid">
+            <p style="color: var(--text-muted); grid-column: 1/-1;">Please select a gender above to display body measurement options.</p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Proceed to Payment</button>
+      </form>
+    </div>
+
+    <!-- CUSTOM ASSISTANCE CALLOUT -->
+    <div class="custom-help-banner">
+      <h3>Couldn't Find What Suits You?</h3>
+      <p>If you have a custom design, photo reference, or special request not listed here, speak directly with the owner to tailor your vision.</p>
+      <a href="https://wa.me/2349163950691?text=Hello%20Ismail,%20I%20have%20a%20custom%20design%20I%20would%20like%20to%20describe." target="_blank" class="btn-primary">Message Business Owner</a>
+    </div>
+
+    <!-- BUSINESS OWNER PROFILE SECTION -->
+    <div class="owner-section">
+      <img src="/F3759F0B-7763-415F-8982-CAED0D7B36D5.jpeg" alt="Ismail Abubakar - Owner" class="owner-img">
+      <div class="owner-details">
+        <h3>Ismail Abubakar</h3>
+        <p style="color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">Master Tailor & Founder, Smayol Couture</p>
+        <p>With years of dedication to luxury craftsmanship and high-precision bespoke tailoring, I personally oversee all designs to guarantee the perfect fit, elegance, and durability for every client.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAYMENT & SENDER DETAILS MODAL -->
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('paymentModal')">&times;</button>
+      <h2 style="color: var(--accent-gold); margin-bottom: 10px;">Payment Details</h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Transfer to complete your custom tailoring request:</p>
+      
+      <!-- OFFICIAL BANK DETAILS BOX -->
+      <div class="bank-box">
+        <p><strong>Bank Name:</strong> Opay Bank</p>
+        <p><strong>Account Name:</strong> Ismail Abubakar</p>
+        <p><strong>Account Number:</strong> <span style="color: var(--accent-gold); font-size:1.2rem; font-weight:bold;">9163950691</span></p>
+      </div>
+
+      <!-- SENDER NAME & AMOUNT FORM -->
+      <form id="paymentVerificationForm" onsubmit="handlePaymentSubmit(event)">
+        <div class="form-group">
+          <label>Sender Full Name (Name on Transfer)</label>
+          <input type="text" id="senderName" class="form-control" required placeholder="Enter bank account name used for payment">
+        </div>
+        <div class="form-group">
+          <label>Amount Paid (₦)</label>
+          <input type="number" id="senderAmount" class="form-control" required placeholder="e.g. 25000">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Confirm Payment Details</button>
+      </form>
+
+      <!-- RECEIPT SUMMARY OUTPUT -->
+      <div id="receiptOutput" style="display:none; margin-top: 20px; border-top: 1px dashed var(--card-border); padding-top: 20px;">
+        <h3 style="color: var(--success); margin-bottom: 10px;">✓ Payment Submitted for Verification!</h3>
+        <div id="receiptDetails" style="font-size:0.9rem; line-height: 1.8; color: var(--text-muted);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MODAL -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('adminModal')">&times;</button>
+      
+      <!-- ADMIN LOGIN FORM -->
+      <div id="adminLoginForm">
+        <h2 style="margin-bottom: 15px;">Admin Login</h2>
+        <form onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="adminUser" class="form-control" placeholder="Enter Username" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="adminPass" class="form-control" placeholder="Enter Password" required>
+          </div>
+          <div id="loginError" class="error-msg">Invalid login credentials. Please try again.</div>
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Access Portal</button>
+        </form>
+      </div>
+
+      <!-- ADMIN DASHBOARD PANEL -->
+      <div id="adminDashboard" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2>Customer Booking Orders</h2>
+          <button style="background:var(--danger); color:#fff; border:none; padding: 6px 14px; border-radius: 6px; cursor:pointer; font-weight:600;" onclick="logoutAdmin()">Logout</button>
+        </div>
+        <div id="ordersContainer">
+          <p style="color: var(--text-muted);">No customer bookings received yet.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/2349163950691?text=Hello%20Smayol%20Couture,%20I%20would%20like%20to%20make%20an%20inquiry." class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32">
+      <path d="M16 2a13 13 0 0 0-11.25 19.5L3 29l7.73-1.68A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.61-1.53l-.4-.24-4.58 1 1-4.46-.26-.42A11 11 0 1 1 16 26zm6.05-8.23c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.52-.17-.74.17s-.86 1.08-1.05 1.3-.39.25-.72.08a9.17 9.17 0 0 1-2.69-1.66 10.1 10.1 0 0 1-1.86-2.32c-.2-.33 0-.5.15-.67.14-.15.33-.39.5-.58.17-.2.22-.33.33-.55.11-.23.06-.42 0-.58s-.74-1.79-1-2.45c-.27-.65-.55-.56-.74-.57h-.63c-.22 0-.58.08-.88.41s-1.16 1.13-1.16 2.76 1.19 3.2 1.35 3.42 2.33 3.56 5.65 5c.79.34 1.41.54 1.89.69.8.25 1.53.21 2.11.13.65-.09 1.96-.8 2.24-1.58.28-.77.28-1.43.2-1.57-.09-.13-.31-.22-.64-.38z"/>
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Smayol Couture</strong> | Managed by Ismail Abubakar</p>
+    <p style="font-size: 0.85rem; margin-top: 5px;">Anguwan Kabula, IBB Market, Suleja, Niger State</p>
+  </footer>
+
+  <!-- ==========================================================================
+     9. JAVASCRIPT LOGIC
+     ========================================================================== -->
+  <script>
+    let currentOrder = null;
+    let ordersList = [];
+
+    // Render Dynamic Measurement Fields
+    function renderMeasurementFields() {
+      const gender = document.getElementById('genderSelect').value;
+      const style = document.getElementById('styleSelect').value;
+      const container = document.getElementById('measurementsContainer');
+      container.innerHTML = '';
+
+      if (gender === 'men') {
+        const fields = ['Top Length', 'Shoulder', 'Chest', 'Neck', 'Hand', 'Trouser Length', 'Waist'];
+        fields.forEach(field => {
+          container.innerHTML += `
+            <div>
+              <label style="font-size:0.85rem">${field}</label>
+              <input type="number" step="0.1" class="form-control" data-field="${field}" required placeholder="0.0">
+            </div>`;
+        });
+      } else if (gender === 'women') {
+        let fields = ['Main Length (Up to Down)'];
+        
+        if (style === 'Skirt and Blouse') {
+          fields = fields.concat(['Top Length', 'Burst', 'Down Burst', 'Hand', 'Shoulder', 'Half Length', 'Skirt Length', 'Hips Waist', 'Down Hips']);
+        } else {
+          fields = fields.concat(['Burst', 'Waist', 'Hips', 'Shoulder', 'Hand']);
+        }
+
+        fields.forEach(field => {
+          container.innerHTML += `
+            <div>
+              <label style="font-size:0.85rem">${field}</label>
+              <input type="number" step="0.1" class="form-control" data-field="${field}" required placeholder="0.0">
+            </div>`;
+        });
+      }
+    }
+
+    function toggleWomenOptions() {
+      const gender = document.getElementById('genderSelect').value;
+      if (gender === 'women') {
+        renderMeasurementFields();
+      }
+    }
+
+    // Submit Initial Order Details
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      
+      const inputs = document.querySelectorAll('#measurementsContainer input');
+      const measurements = {};
+      inputs.forEach(input => {
+        measurements[input.getAttribute('data-field')] = input.value + ' in';
+      });
+
+      currentOrder = {
+        id: 'SMAYOL-' + Math.floor(1000 + Math.random() * 9000),
+        name: document.getElementById('custName').value,
+        phone: document.getElementById('custPhone').value,
+        address: document.getElementById('custAddress').value,
+        gender: document.getElementById('genderSelect').value,
+        style: document.getElementById('styleSelect').value,
+        fabric: document.getElementById('fabricSelect').value,
+        color: document.getElementById('colorText').value,
+        measurements: measurements,
+        status: 'Pending Verification',
+        senderName: '',
+        amountPaid: ''
+      };
+
+      document.getElementById('paymentModal').classList.add('active');
+    }
+
+    // Submit Payment Verification Details
+    function handlePaymentSubmit(e) {
+      e.preventDefault();
+      
+      const senderName = document.getElementById('senderName').value;
+      const amountPaid = document.getElementById('senderAmount').value;
+
+      currentOrder.senderName = senderName;
+      currentOrder.amountPaid = amountPaid;
+
+      ordersList.push(currentOrder);
+
+      // Show Customer Confirmation Output
+      const receiptBox = document.getElementById('receiptOutput');
+      const detailsBox = document.getElementById('receiptDetails');
+      
+      detailsBox.innerHTML = `
+        <p><strong>Order ID:</strong> ${currentOrder.id}</p>
+        <p><strong>Customer Name:</strong> ${currentOrder.name} (${currentOrder.phone})</p>
+        <p><strong>Fabric Choice:</strong> ${currentOrder.fabric}</p>
+        <p><strong>Garment Color:</strong> ${currentOrder.color}</p>
+        <p><strong>Sender Account Name:</strong> ${currentOrder.senderName}</p>
+        <p><strong>Amount Paid:</strong> ₦${Number(currentOrder.amountPaid).toLocaleString()}</p>
+        <p><strong>Status:</strong> <span id="statusTag" style="color:#ff9500">${currentOrder.status}</span></p>
+      `;
+      
+      receiptBox.style.display = 'block';
+      renderAdminOrders();
+    }
+
+    // Admin Modal Handling
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.add('active');
+      document.getElementById('loginError').style.display = 'none';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    // Fixed Admin Login Handler
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      loginAdmin();
+    }
+
+    function loginAdmin() {
+      const user = document.getElementById('adminUser').value.trim();
+      const pass = document.getElementById('adminPass').value.trim();
+      const errorMsg = document.getElementById('loginError');
+
+      if (user === 'admin' && pass === 'SMAYOL2007@') {
+        errorMsg.style.display = 'none';
+        document.getElementById('adminLoginForm').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        renderAdminOrders();
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+
+    function logoutAdmin() {
+      document.getElementById('adminLoginForm').style.display = 'block';
+      document.getElementById('adminDashboard').style.display = 'none';
+      document.getElementById('adminUser').value = '';
+      document.getElementById('adminPass').value = '';
+      document.getElementById('loginError').style.display = 'none';
+    }
+
+    // Render Orders in Admin Panel
+    function renderAdminOrders() {
+      const container = document.getElementById('ordersContainer');
+      if (ordersList.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">No customer bookings received yet.</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+      ordersList.forEach((order, index) => {
+        let measurementsHTML = '';
+        for (let [key, val] of Object.entries(order.measurements)) {
+          measurementsHTML += `<li>${key}: <strong>${val}</strong></li>`;
+        }
+
+        const isApproved = order.status === 'APPROVED';
+
+        container.innerHTML += `
+          <div class="order-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3>${order.name} <span style="font-size:0.8rem; color:var(--text-muted);">(${order.id})</span></h3>
+              <span class="badge ${isApproved ? 'badge-approved' : 'badge-pending'}">${order.status}</span>
+            </div>
+            <p style="font-size:0.9rem; margin-top:5px;"><strong>Phone:</strong> ${order.phone} | <strong>Location:</strong> ${order.address}</p>
+            <p style="font-size:0.9rem;"><strong>Style:</strong> ${order.style} | <strong>Fabric:</strong> ${order.fabric}</p>
+            <p style="font-size:0.9rem;"><strong>Color Requested:</strong> ${order.color}</p>
+            <p style="font-size:0.9rem; color:var(--accent-gold);"><strong>Payment Sender Name:</strong> ${order.senderName} | <strong>Amount:</strong> ₦${Number(order.amountPaid).toLocaleString()}</p>
+            
+            <details style="margin-top:10px; cursor:pointer;">
+              <summary style="color:var(--accent-gold); font-size:0.9rem;">View Submitted Measurements</summary>
+              <ul style="padding-left:20px; font-size:0.85rem; margin-top:5px; color:var(--text-muted);">
+                ${measurementsHTML}
+              </ul>
+            </details>
+
+            ${!isApproved ? `<button class="btn-primary" style="padding: 6px 16px; font-size: 0.85rem; margin-top: 12px;" onclick="approveOrder(${index})">Approve Order</button>` : ''}
+          </div>
+        `;
+      });
+    }
+
+    function approveOrder(index) {
+      ordersList[index].status = 'APPROVED';
+      renderAdminOrders();
+      
+      const receiptBox = document.getElementById('receiptOutput');
+      if (receiptBox.style.display === 'block' && currentOrder && currentOrder.id === ordersList[index].id) {
+        currentOrder.status = 'APPROVED';
+        const statusSpan = document.getElementById('statusTag');
+        if (statusSpan) {
+          statusSpan.style.color = '#34c759';
+          statusSpan.innerText = 'APPROVED';
+        }
+      }
+    }
+  </script>
+</body>
+</html>
